@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: 运营部
- * Date: 2018/7/12
- * Time: 17:05
+ * Date: 2018/7/13
+ * Time: 14:16
  *
  *
  *                      _ooOoo_
@@ -29,22 +29,29 @@
  *
  */
 
-use pf\face\PFace;
+use Curl\Curl;
 
 require './vendor/autoload.php';
+$key_words = ['性感美女'];
 
-$file = "fc.jpeg";
-if ($fp = fopen($file, "rb", 0)) {
-    $gambar = fread($fp, filesize($file));
-    fclose($fp);
-    $base64 = chunk_split(base64_encode($gambar));
-    // 输出
-}
-$arr = [
-    'image_base64' => $base64,
-    'return_landmark' => 1,
-    'return_attributes'=>'age,gender'
+$spider_url = [
+    'baidu' => 'https://image.baidu.com/search/index?tn=baiduimage&word=',
 ];
-$face_info = json_decode(PFace::detect($arr),true);
-$face_coordinate = $face_info['data'];
-dd($face_coordinate);
+
+//爬取
+function get_picture($obj,$key_words,$spider_url,$params=[])
+{
+    $url = $spider_url[$obj].$key_words;
+    $curl = new Curl();
+    $curl->setOpt(CURLOPT_SSL_VERIFYPEER, false);
+    $curl->get($url);
+    echo $curl->response;
+
+}
+
+foreach ($key_words as $key_word) {
+    for($i=0;$i<=1;$i++) {
+        get_picture('baidu',$key_word,$spider_url,['p'=>$i]);
+    }
+
+}

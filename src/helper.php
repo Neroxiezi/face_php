@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: 运营部
- * Date: 2018/7/12
- * Time: 17:05
+ * Date: 2018/7/13
+ * Time: 10:37
  *
  *
  *                      _ooOoo_
@@ -29,22 +29,23 @@
  *
  */
 
-use pf\face\PFace;
-
-require './vendor/autoload.php';
-
-$file = "fc.jpeg";
-if ($fp = fopen($file, "rb", 0)) {
-    $gambar = fread($fp, filesize($file));
-    fclose($fp);
-    $base64 = chunk_split(base64_encode($gambar));
-    // 输出
+if (!function_exists('dd')) {
+    function dd($arr)
+    {
+        echo '<pre>';
+        var_dump($arr);
+        echo '</pre>';
+        exit;
+    }
 }
-$arr = [
-    'image_base64' => $base64,
-    'return_landmark' => 1,
-    'return_attributes'=>'age,gender'
-];
-$face_info = json_decode(PFace::detect($arr),true);
-$face_coordinate = $face_info['data'];
-dd($face_coordinate);
+
+if (!function_exists('json')) {
+    function json($code, $messages, $data=[])
+    {
+        if ($code == 200) {
+            return json_encode(['code'=>$code,'data'=>$data,'messages'=>$messages]);
+        } else {
+            return json_encode(['code'=>$code,'messages'=>$messages]);
+        }
+    }
+}
