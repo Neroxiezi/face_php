@@ -1,0 +1,18 @@
+{
+    "name": "pfinal/face_php_sdk",
+    "authors": [
+        {
+            "name": "LXZ",
+            "email": "Lampxiezi@163.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "php-curl-class/php-curl-class": "8.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "pf\\face\\": "src/"
+        }
+    }
+}
