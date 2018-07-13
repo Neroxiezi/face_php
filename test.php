@@ -32,19 +32,31 @@
 use pf\face\PFace;
 
 require './vendor/autoload.php';
-
 $file = "fc.jpeg";
-if ($fp = fopen($file, "rb", 0)) {
-    $gambar = fread($fp, filesize($file));
-    fclose($fp);
-    $base64 = chunk_split(base64_encode($gambar));
-    // 输出
+
+$resource = opendir('./uploads');
+//dd($resource);
+while ($filename = readdir($resource)) {
+    if($filename=='.' ||$filename=='..' ) {
+        continue;
+    }
+    $file_path = './uploads/'.$filename;
+    if ($fp = fopen($file_path, "rb", 0)) {
+        $gambar = fread($fp, filesize($file_path));
+        fclose($fp);
+        $base64 = chunk_split(base64_encode($gambar));
+        // 输出
+    }
+    $arr = [
+        'image_base64' => $base64,
+        'return_attributes' => 'age,gender,smiling,emotion,ethnicity,beauty,skinstatus'
+    ];
+    $face_info = json_decode(PFace::detect($arr), true);
+    $face_coordinate = $face_info['data'];
+    $data[] = ['photo'=>$filename,'data'=>$face_coordinate['faces'][0]['attributes']];
 }
-$arr = [
-    'image_base64' => $base64,
-    'return_landmark' => 1,
-    'return_attributes'=>'age,gender'
-];
-$face_info = json_decode(PFace::detect($arr),true);
-$face_coordinate = $face_info['data'];
-dd($face_coordinate);
+
+file_put_contents('./data.log',json_encode($data));
+
+
+
