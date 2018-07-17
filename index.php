@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 /**
  * Created by PhpStorm.
  * User: 运营部
@@ -61,7 +62,10 @@ exit;*/
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>打分</title>
     <style>
-        *{margin: 0;padding: 0;}
+        * {
+            margin: 0;
+            padding: 0;
+        }
     </style>
 </head>
 <body>
@@ -72,7 +76,8 @@ exit;*/
         //var_dump($datum['data']['ethnicity']['value']);exit;
         ?>
         <ul style="display: flex;justify-content:space-between">
-            <li style="list-style: none;flex: 1;"><img src="<?php echo './uploads/' . $datum['photo']; ?>" style="width: 100%;"  alt=""></li>
+            <li style="list-style: none;flex: 1;"><img src="<?php echo './uploads/' . $datum['photo']; ?>"
+                                                       style="width: 100%;" alt=""></li>
             <li style="list-style: none;flex: 6;">
                 <table cellspacing="0" border="1" cellpadding="5" style="border-style: dotted;width: 100%;">
                     <tr style="text-align: center">
@@ -80,7 +85,7 @@ exit;*/
                         <th>性别</th>
                         <th>年龄</th>
                         <th>颜值分</th>
-                    </tr >
+                    </tr>
                     <tr style="text-align: center">
                         <td><?php
                             switch ($datum['data']['ethnicity']['value']) {
@@ -96,20 +101,21 @@ exit;*/
                             }
                             ?></td>
                         <td>
-                            <?php echo $datum['data']['gender']['value']=='Female'?'女':'男'?>
+                            <?php echo $datum['data']['gender']['value'] == 'Female' ? '女' : '男' ?>
                         </td>
                         <td>
-                            <?php echo $datum['data']['age']['value'];?>
+                            <?php echo $datum['data']['age']['value']; ?>
                         </td>
                         <td>
-                            <li style="list-style: none">女性喜欢:<?php echo $datum['data']['beauty']['female_score']?></li>
-                            <li style="list-style: none">男性喜欢:<?php echo $datum['data']['beauty']['male_score']?></li>
-                        </td>
-                    </tr>
-                </table>
+            <li style="list-style: none">女性喜欢:<?php echo $datum['data']['beauty']['female_score'] ?></li>
+            <li style="list-style: none">男性喜欢:<?php echo $datum['data']['beauty']['male_score'] ?></li>
+            </td>
+            </tr>
+            </table>
             </li>
         </ul>
-    <?php } ?>
+        <?php
+    } ?>
 
 </div>
 </body>
