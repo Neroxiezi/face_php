@@ -1,10 +1,21 @@
 {
-    "name": "pfinal/face_php_sdk",
+    "name": "pfinal/face_php",
+    "description": "This is a PHP array manipulation middleware",
     "authors": [
         {
-            "name": "LXZ",
-            "email": "Lampxiezi@163.com"
+            "name": "南丞",
+            "email": "Lampxiezi@163.com",
+            "homepage": "http://friday-go.cc/"
         }
+    ],
+    "homepage":"https://github.com/Neroxiezi/face_php",
+    "license": "MIT",
+    "keywords": [
+        "pfinal",
+        "南丞",
+        "Q哥",
+        "face++",
+        "php-face"
     ],
     "require": {
         "php": ">=5.4.0",
