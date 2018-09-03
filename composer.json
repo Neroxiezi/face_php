@@ -1,6 +1,6 @@
 {
-    "name": "pfinal/face_php",
-    "description": "This is a PHP array manipulation middleware",
+    "name": "nancheng/pfinal_face_php",
+    "description": "这是一个基于Face++ 做的PHP包",
     "authors": [
         {
             "name": "南丞",
@@ -8,7 +8,7 @@
             "homepage": "http://friday-go.cc/"
         }
     ],
-    "homepage":"https://github.com/Neroxiezi/face_php",
+    "homepage":"https://github.com/Neroxiezi/pfinal_face_php",
     "license": "MIT",
     "keywords": [
         "pfinal",
